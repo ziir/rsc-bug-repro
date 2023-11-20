@@ -9,7 +9,7 @@ export function App() {
 
   return (
     <Suspense fallback="loading ...">
-      <ClientConsumer promise={promise} />
+      <ClientConsumer promise={promise}>hello world</ClientConsumer>
     </Suspense>
   );
 }
