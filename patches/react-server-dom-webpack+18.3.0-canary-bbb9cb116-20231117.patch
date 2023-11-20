@@ -1,0 +1,26 @@
+diff --git a/node_modules/react-server-dom-webpack/cjs/react-server-dom-webpack-client.node.unbundled.development.js b/node_modules/react-server-dom-webpack/cjs/react-server-dom-webpack-client.node.unbundled.development.js
+index 7d74a9b..d3ecd64 100644
+--- a/node_modules/react-server-dom-webpack/cjs/react-server-dom-webpack-client.node.unbundled.development.js
++++ b/node_modules/react-server-dom-webpack/cjs/react-server-dom-webpack-client.node.unbundled.development.js
+@@ -110,7 +110,7 @@ function preloadModule(metadata) {
+     modulePromise.then(function (value) {
+       var fulfilledThenable = modulePromise;
+       fulfilledThenable.status = 'fulfilled';
+-      fulfilledThenable.value = value;
++      fulfilledThenable.value = value.default;
+     }, function (reason) {
+       var rejectedThenable = modulePromise;
+       rejectedThenable.status = 'rejected';
+diff --git a/node_modules/react-server-dom-webpack/cjs/react-server-dom-webpack-client.node.unbundled.production.min.js b/node_modules/react-server-dom-webpack/cjs/react-server-dom-webpack-client.node.unbundled.production.min.js
+index 0b8079e..e1c256d 100644
+--- a/node_modules/react-server-dom-webpack/cjs/react-server-dom-webpack-client.node.unbundled.production.min.js
++++ b/node_modules/react-server-dom-webpack/cjs/react-server-dom-webpack-client.node.unbundled.production.min.js
+@@ -8,7 +8,7 @@
+  LICENSE file in the root directory of this source tree.
+ */
+ 'use strict';var p=require("util"),r=require("react-dom"),u=require("react"),v={stream:!0};function w(a,b){var d=a[b[0]];if(a=d[b[2]])d=a.name;else{a=d["*"];if(!a)throw Error('Could not find the module "'+b[0]+'" in the React SSR Manifest. This is probably a bug in the React Server Components bundler.');d=b[2]}return{specifier:a.specifier,name:d,async:4===b.length}}var x=new Map;
+-function y(a){var b=x.get(a.specifier);if(b)return"fulfilled"===b.status?null:b;var d=import(a.specifier);a.async&&(d=d.then(function(c){return c.default}));d.then(function(c){var g=d;g.status="fulfilled";g.value=c},function(c){var g=d;g.status="rejected";g.reason=c});x.set(a.specifier,d);return d}
++function y(a){var b=x.get(a.specifier);if(b)return"fulfilled"===b.status?null:b;var d=import(a.specifier);a.async&&(d=d.then(function(c){return c.default}));d.then(function(c){var g=d;g.status="fulfilled";g.value=c.default},function(c){var g=d;g.status="rejected";g.reason=c});x.set(a.specifier,d);return d}
+ function z(a,b,d){if(null!==a)for(var c=1;c<b.length;c+=2){var g=d,h=A.current;if(h){var l=h.preinitScript,k=a.prefix+b[c];var e=a.crossOrigin;e="string"===typeof e?"use-credentials"===e?e:"":void 0;l.call(h,k,{crossOrigin:e,nonce:g})}}}var A=r.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.Dispatcher,B=Symbol.for("react.element"),C=Symbol.for("react.provider"),D=Symbol.for("react.server_context"),F=Symbol.for("react.lazy"),G=Symbol.for("react.default_value"),H=Symbol.iterator;
+ function aa(a){if(null===a||"object"!==typeof a)return null;a=H&&a[H]||a["@@iterator"];return"function"===typeof a?a:null}var ba=Array.isArray,I=Object.getPrototypeOf,ca=Object.prototype,J=new WeakMap;function da(a){return Number.isFinite(a)?0===a&&-Infinity===1/a?"$-0":a:Infinity===a?"$Infinity":-Infinity===a?"$-Infinity":"$NaN"}
+ function ea(a,b,d,c){function g(e,f){if(null===f)return null;if("object"===typeof f){if("function"===typeof f.then){null===k&&(k=new FormData);l++;var t=h++;f.then(function(n){n=JSON.stringify(n,g);var q=k;q.append(b+t,n);l--;0===l&&d(q)},function(n){c(n)});return"$@"+t.toString(16)}if(ba(f))return f;if(f instanceof FormData){null===k&&(k=new FormData);var E=k;e=h++;var m=b+e+"_";f.forEach(function(n,q){E.append(m+q,n)});return"$K"+e.toString(16)}if(f instanceof Map)return f=JSON.stringify(Array.from(f),
